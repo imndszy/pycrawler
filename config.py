@@ -6,16 +6,26 @@
 SETTINGS = {
     'MYSQL_USER': 'root',
     'MYSQL_PASSWORD': 'password',
-    'MYSQL_DBNAME': 'rawler',
-    'MYSQL_SERVER': 'localhost'
+    'MYSQL_DBNAME': 'crawler',
+    'MYSQL_SERVER': 'localhost',
+    'REDIS_SERVER': 'localhost',
+    'REDIS_PORT': 6379,
+    'REDIS_DB': 1,
 }
 
-TIME_OUT = 10
+REDIS_KEY = {
+    'URL_FILTER': 'crawl',     # 用于URL去重
+    'URL_PERSISTENCE': 'urls', # 保存上次爬的url用于下次初始化
+    'SPIDER_STATUS': 'status'  # 1代表未开启更新模式, 2代表开启更新模式
+}
+
+TIME_OUT = 5
 SLEEP_TIME = 10
 TABLE_NAME = "ALL_URL"
 DB_PARAM = {
     'url': None,
     'html': None,
+    'domain': '',
     'language': 'Unknown',
     'encode': None,
     'http_code': None,
@@ -25,10 +35,12 @@ DB_PARAM = {
     'UpdateTime': None,
 }
 
-VALID_SUFFIX = ["aspx", "php", "htm", "html", "asp", "ashx", "mooc", "cgi", "action", "jsp", "do", "psp", "jspy"]
+VALID_SUFFIX = ["aspx", "php", "htm", "html", "asp", "ashx", "mooc", "cgi", "action",
+                "jsp", "do", "psp", "jspy", "jhtml", "shtml"]
 COMMON_FILE_SUFFIX = ["jpg", "png", "css", "pdf", "doc", "docx", "ico", "mp4", "avi",
                       "rar", "xlsx", "xls", "gif", "xml", "portal", "thmx", "flv",
-                      "mp3", "zip", "ppt", "pptx", "mso", "gz", "txt", "owl", "exe"]
+                      "mp3", "zip", "ppt", "pptx", "mso", "gz", "txt", "owl", "exe",
+                      "tsv", "iso", "bat", "mobi", "jpeg", "svg", "rss", "m3u8"]
 OUTER_DOMAIN = ["com", "net", "in", "org", "fr", "de", "cn"]
 
 INVALID_HREF_PATTERN = ["javascript:", "mailto:", "@nju.edu.cn"]
@@ -132,3 +144,5 @@ SEED_URL_SET = {url45, url59, url91, url1, url2, url3, url4, url5, url6, url7, u
                 url88, url89, url90}
 
 ALLOWED_DOMAIN = {"nju.edu.cn"}
+
+BLACK_DOMAIN = {"horizon.nju.edu.cn", "www.jlxy.nju.edu.cn", "lmswe.nju.edu.cn", "scw973.nju.edu.cn"}
