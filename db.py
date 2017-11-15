@@ -270,7 +270,7 @@ def _update(sql, *args):
         return r
     except Exception as e:
         logging.warn("error msg : {}".format(str(e.args)))
-        logging.warn("sql : {}, {}".format(sql, args))
+        logging.warn("sql : {}".format(sql))
     finally:
         if cursor:
             cursor.close()
